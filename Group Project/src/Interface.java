@@ -44,6 +44,7 @@ public class Interface extends Application {
 	    public void start(Stage primaryStage) {
 	        primaryStage.setTitle("Car Payment Calculator");
 	        GridPane grid = new GridPane();
+	        grid.setStyle("-fx-background-color: WHITE;");
 	        grid.setAlignment(Pos.TOP_LEFT);
 	        //grid.setHgap(10);
 	        //grid.setVgap(5);
