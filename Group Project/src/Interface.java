@@ -27,6 +27,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.scene.input.KeyEvent;
 	
 	
 public class Interface extends Application {
@@ -35,9 +36,14 @@ public class Interface extends Application {
     double rate2 = 1;
     Label creditScoreText = new Label("Please choose a credit score.");
     
-    Text monthlyPaymentAmount = new Text("$0.00");
-    Text totalPaymentAmount = new Text("$0.00");
-    Text totalInterestAmount = new Text("$0.00");
+    private Text monthlyPaymentAmount = new Text("$0.00");
+    private Text totalPaymentAmount = new Text("$0.00");
+    private Text totalInterestAmount = new Text("$0.00");
+    
+    private TextField carPriceField = new TextField();
+    private TextField tradeInField = new TextField();
+    private TextField interestRateField = new TextField();
+    private TextField monthsField = new TextField();
     
     
 	    @Override
@@ -199,7 +205,7 @@ public class Interface extends Application {
 	        	carPriceLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 12));
 	        	leftColumn.add(carPriceLabel, 1, 7);
 	        	
-	        	TextField carPriceField = new TextField();
+	        	
 	        	carPriceField.setMaxWidth(280);
 	        	leftColumn.add(carPriceField, 1, 8);
 	        	
@@ -214,7 +220,7 @@ public class Interface extends Application {
 	        	tradeInLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 12));
 	        	leftColumn.add(tradeInLabel, 1, 10);
 	        	
-	        	TextField tradeInField = new TextField();
+	        	
 	        	tradeInField.setMaxWidth(280);
 	        	leftColumn.add(tradeInField, 1, 11);
 	        	
@@ -235,7 +241,7 @@ public class Interface extends Application {
 	        	interestRateLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 12));
 	        	leftColumn.add(interestRateLabel, 1, 16);
 	        	
-	        	TextField interestRateField = new TextField();
+	        	
 	        	interestRateField.setMaxWidth(280);
 	        	leftColumn.add(interestRateField, 1, 17);
 	        	
@@ -249,7 +255,7 @@ public class Interface extends Application {
 	        	monthsLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 12));
 	        	leftColumn.add(monthsLabel, 1, 20);
 	        	
-	        	TextField monthsField = new TextField();
+	        	
 	        	monthsField.setMaxWidth(280);
 	        	leftColumn.add(monthsField, 1, 21);
 	        	
@@ -258,7 +264,17 @@ public class Interface extends Application {
 	        	suggestedMax.setFill(Color.GRAY);
 	        	leftColumn.add(suggestedMax, 1, 22);
 	        	
-	        	
+	        	EventHandler<KeyEvent> calcEventHandler = new EventHandler<KeyEvent>() { 
+	    			@Override 
+	    			public void handle(KeyEvent e) {
+	    				//calc();
+	    			} 
+	    		};
+	    		carPriceField.addEventHandler(KeyEvent.KEY_RELEASED, calcEventHandler);   
+	    		tradeInField.addEventHandler(KeyEvent.KEY_RELEASED, calcEventHandler);   
+	    		interestRateField.addEventHandler(KeyEvent.KEY_RELEASED, calcEventHandler);
+	    		monthsField.addEventHandler(KeyEvent.KEY_RELEASED, calcEventHandler);
+
 	        	
 	        	
 
