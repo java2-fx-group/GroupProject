@@ -173,14 +173,16 @@ public class Interface extends Application {
     
         	
         	
-	        
-	        ObservableList<String> options = 
-	        	    FXCollections.observableArrayList(
-	        	        "Option 1",
-	        	        "Option 2",
-	        	        "Option 3"
+        	
+        	   ObservableList<String> options = 
+        		        	    FXCollections.observableArrayList(
+        		        	        "Super Prime (781-850)",
+        		        	        "Prime (661-780)",
+        		        	        "Nonprime (601-660)",
+        		        	        "Subprime (501-600)",
+        		        	        "Deep Subprime (300-500)"
 	        	    );
-	        	ComboBox comboBox = new ComboBox(options);
+	        	ComboBox<String> comboBox = new ComboBox<String>(options);
 	        	comboBox.valueProperty().addListener(new ChangeListener<String>() {
 
 	                @Override
@@ -267,7 +269,7 @@ public class Interface extends Application {
 	        	EventHandler<KeyEvent> calcEventHandler = new EventHandler<KeyEvent>() { 
 	    			@Override 
 	    			public void handle(KeyEvent e) {
-	    				//calc();
+	    				calc();
 	    			} 
 	    		};
 	    		carPriceField.addEventHandler(KeyEvent.KEY_RELEASED, calcEventHandler);   
@@ -288,36 +290,51 @@ public class Interface extends Application {
 	        
 
 	        
-	        
-	        
-	        
+	       
 	        
 	 public static void main(String[] args) {
 	        launch(args);
 	    }
 	 
 	 
-	 
-	 private void updateLabels(String newValue) {
-		    switch (newValue) {
-		        case ("Option 1"):
-		            rate1 = 3.08;
-		        	rate2 = 3.76;
-		        	creditScoreText.setText("Based on your score, the average rate is " + rate1+ "% (new) or " + rate2+ "% (used).");
-		            break;
-		        case ("Option 2"):
-		        	rate1 = 3.99;
-	        		rate2 = 5.45;
-	        		creditScoreText.setText("Based on your score, the average rate is " + rate1+ "% (new) or " + rate2+ "% (used).");
-		            break;
-		        case ("Option 3"):
-		        	rate1 = 6.83;
-	        		rate2 = 9.98;
-	        		creditScoreText.setText("Based on your score, the average rate is " + rate1+ "% (new) or " + rate2+ "% (used).");
-		            break;
-		        default:
-		            System.out.println("treatment room not recognised");
-		    }
 
-		}
-}
+
+	 private void updateLabels(String newValue) {
+			    switch (newValue) {
+			        case ("Super Prime (781-850)"):
+			            rate1 = 3.08;
+			        	rate2 = 3.76;
+			        	creditScoreText.setText("Based on your score, the average rate is " + rate1+ "% (new) or " + rate2+ "% (used).");
+			            break;
+			        case ("Prime (661-780)"):
+			        	rate1 = 3.99;
+		        		rate2 = 5.45;
+		        		creditScoreText.setText("Based on your score, the average rate is " + rate1+ "% (new) or " + rate2+ "% (used).");
+			            break;
+			        case ("Nonprime (601-660)"):
+			        	rate1 = 6.83;
+		        		rate2 = 9.98;
+		        		creditScoreText.setText("Based on your score, the average rate is " + rate1+ "% (new) or " + rate2+ "% (used).");
+			            break;
+			        case ("Subprime (501-600)"):
+			        	rate1 = 11.11;
+		        		rate2 = 16.23;
+		        		creditScoreText.setText("Based on your score, the average rate is " + rate1+ "% (new) or " + rate2+ "% (used).");
+			            break;
+			        case ("Deep Subprime (300-500)"):
+			        	rate1 = 13.95;
+		        		rate2 = 19.38;
+		        		creditScoreText.setText("Based on your score, the average rate is " + rate1+ "% (new) or " + rate2+ "% (used).");
+			            break;
+			        default:
+			            System.out.println("treatment room not recognised");
+			    }
+
+			}
+	 
+	 
+	 void calc(){
+		 
+		 
+	 }
+	}

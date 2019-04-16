@@ -182,7 +182,7 @@ public class CarLoanCalc extends Application {
         		        	        "Subprime (501-600)",
         		        	        "Deep Subprime (300-500)"
 	        	    );
-	        	ComboBox comboBox = new ComboBox(options);
+	        	ComboBox<String> comboBox = new ComboBox<String>(options);
 	        	comboBox.valueProperty().addListener(new ChangeListener<String>() {
 
 	                @Override
@@ -269,7 +269,7 @@ public class CarLoanCalc extends Application {
 	        	EventHandler<KeyEvent> calcEventHandler = new EventHandler<KeyEvent>() { 
 	    			@Override 
 	    			public void handle(KeyEvent e) {
-	    				//calc();
+	    				calc();
 	    			} 
 	    		};
 	    		carPriceField.addEventHandler(KeyEvent.KEY_RELEASED, calcEventHandler);   
@@ -331,4 +331,10 @@ public class CarLoanCalc extends Application {
 			    }
 
 			}
+	 
+	 
+	 void calc(){
+		 
+		 
+	 }
 	}
