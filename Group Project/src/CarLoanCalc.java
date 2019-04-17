@@ -1,4 +1,6 @@
-	import javax.swing.text.html.CSS;
+	import java.text.NumberFormat;
+
+import javax.swing.text.html.CSS;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -333,8 +335,35 @@ public class CarLoanCalc extends Application {
 			}
 	 
 	 
-	 void calc(){
+	 void calc(){ 	
+		 String carPrice = carPriceField.getText();
+		 String tradeIn = tradeInField.getText();
+		 String interestRate = interestRateField.getText();
+		 String months = monthsField.getText();
 		 
+		 float principal = Float.parseFloat(carPrice)-Float.parseFloat(tradeIn);
+		 float rate = Float.parseFloat(interestRate);
+		 float i = (rate / 12); 
+		 float n = Float.parseFloat(months);    
+		 float payment = (float) (principal*((i*(Math.pow(1+i, n))/((Math.pow(1+i, n)-1)))));
+		 float totalPaid = payment*n;
 		 
-	 }
+		 double totalInterest = payment*n -principal;  //total interest paid
+	        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+	        NumberFormat interestFormat = NumberFormat.getPercentInstance();
+	        String t= currencyFormat.format(totalPaid);   //total paid over loan life
+	        String s =currencyFormat.format(payment);     //regular monthly payment
+	        t = t.replace("$","").trim();
+	        Double q = Double.parseDouble(t);
+	        s = s.replace("$","").trim();
+	        Double m = Double.parseDouble(s);
+	        double extra = q-(m*n);      //additional added to final payment
+	        double fpayment = m+extra;	//final monthly payment
+	        if (extra != 0)
+	        	monthlyPaymentAmount.setText("$" + m+ " plus $"+extra+ " on last payment.");
+	        else 
+	        	monthlyPaymentAmount.setText("$" + m);
+	        totalPaymentAmount.setText(t);
+	        totalInterestAmount.setText("$"+ totalInterest);
+	    }
 	}
