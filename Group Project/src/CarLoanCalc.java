@@ -340,7 +340,7 @@ public class CarLoanCalc extends Application {
 		 String tradeIn = tradeInField.getText();
 		 String interestRate = interestRateField.getText();
 		 String months = monthsField.getText();
-		 
+		 try {
 		 float principal = Float.parseFloat(carPrice)-Float.parseFloat(tradeIn);
 		 float rate = Float.parseFloat(interestRate);
 		 float i = (rate / 12); 
@@ -369,5 +369,9 @@ public class CarLoanCalc extends Application {
 	        	monthlyPaymentAmount.setText("$" + m);
 	        totalPaymentAmount.setText("$"+t);
 	        totalInterestAmount.setText(intr);
+		 }
+		 catch(Exception e) {
+			 
+		 }
 	    }
 	}
