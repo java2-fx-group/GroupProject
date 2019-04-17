@@ -372,7 +372,7 @@ public class CarLoanCalc extends Application {
 				 //Double q = Double.parseDouble(t);
 				 //s = s.replace("$","").trim();
 				 //Double m = Double.parseDouble(s);
-				 double extra = Math.round(totalPaid* 100.0) / 100.0-(Math.round( payment* 100.0) / 100.0*n);      //additional added to final payment
+				 double extra = (Math.round(totalPaid* 100.0) / 100.0)-(Math.round( payment* 100.0) / 100.0*n);      //additional added to final payment
 				 //extra = Math.round(extra * 100.0) / 100.0;
 				 String ext =currencyFormat.format(extra);
 				 if (extra != 0)
