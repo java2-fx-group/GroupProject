@@ -137,6 +137,7 @@ public class CarLoanCalc extends Application {
         	
         	monthlyPaymentAmount.setFont(Font.font("Tahoma", FontWeight.BOLD, 16));
         	monthlyPaymentAmount.setFill(Color.color(.09, .46, .78));
+        	//monthlyPaymentAmount.setWrappingWidth(280);
         	rightColumn.add(monthlyPaymentAmount, 1, 4);
         	
         	Text beforeTaxes = new Text("(Before taxes & fees)");
@@ -341,34 +342,49 @@ public class CarLoanCalc extends Application {
 		 String interestRate = interestRateField.getText();
 		 String months = monthsField.getText();
 		 try {
-		 float principal = Float.parseFloat(carPrice)-Float.parseFloat(tradeIn);
-		 float rate = Float.parseFloat(interestRate);
-		 float i = (rate / 12); 
-		 float n = Float.parseFloat(months);    
-		 float payment = (float) (principal*((i*(Math.pow(1+i, n))/((Math.pow(1+i, n)-1)))));
-		 float totalPaid = payment*n;
+			 float principal = Float.parseFloat(carPrice)-Float.parseFloat(tradeIn);
+			 float rate = Float.parseFloat(interestRate);
+			 float i = (rate / 12); 
+			 float n = Float.parseFloat(months);   
+			 if (n == 0) {
+				 float payment = (float) (principal);
+				 float totalPaid = principal;
+				 NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+				 String t= currencyFormat.format(totalPaid);   //total paid over loan life
+				 String s =currencyFormat.format(payment);
+				 monthlyPaymentAmount.setText(t);
+		        totalPaymentAmount.setText(t);
+		        totalInterestAmount.setText("$0.00");
+			 }
+			 else {
+				 float payment = (float) (principal*((i*(Math.pow(1+i, n))/((Math.pow(1+i, n)-1)))));
+				 float totalPaid = payment*n;
 		 
-		 double totalInterest = payment*n -principal;  //total interest paid
-	        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
-	        NumberFormat interestFormat = NumberFormat.getPercentInstance();
-	        String t= currencyFormat.format(totalPaid);   //total paid over loan life
-	        String s =currencyFormat.format(payment);     //regular monthly payment
-	        String intr= currencyFormat.format(totalInterest);   //total paid over loan life
+				 double totalInterest = payment*n -principal;  //total interest paid
+				 NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+				 //NumberFormat interestFormat = NumberFormat.getPercentInstance();
+				 String t= currencyFormat.format(totalPaid);   //total paid over loan life
+				 String s =currencyFormat.format(payment);     //regular monthly payment
+				 String intr= currencyFormat.format(totalInterest);   //total paid over loan life
 	             //regular monthly payment
 	        
-	        t = t.replace("$","").trim();
-	        Double q = Double.parseDouble(t);
-	        s = s.replace("$","").trim();
-	        Double m = Double.parseDouble(s);
-	        double extra = q-(m*n);      //additional added to final payment
-	        String ext =currencyFormat.format(extra);
-	        double fpayment = m+extra;	//final monthly payment
-	        if (extra != 0)
-	        	monthlyPaymentAmount.setText("$" + m+ " plus "+ext+ " on last pmnt.");
-	        else 
-	        	monthlyPaymentAmount.setText("$" + m);
-	        totalPaymentAmount.setText("$"+t);
-	        totalInterestAmount.setText(intr);
+				 //t = t.replace("$","").trim();
+				 //Double q = Double.parseDouble(t);
+				 //s = s.replace("$","").trim();
+				 //Double m = Double.parseDouble(s);
+				 double extra = Math.round(totalPaid* 100.0) / 100.0-(Math.round( payment* 100.0) / 100.0*n);      //additional added to final payment
+				 //extra = Math.round(extra * 100.0) / 100.0;
+				 String ext =currencyFormat.format(extra);
+				 if (extra != 0)
+					 if (extra > 0)
+						 monthlyPaymentAmount.setText(s+ " plus "+ext+ " on last pmnt.");
+					 else 
+						 monthlyPaymentAmount.setText(s+ " minus "+ext+ " on last pmnt.");
+				 else 
+					 monthlyPaymentAmount.setText(s);
+				 totalPaymentAmount.setText(t);
+				 totalInterestAmount.setText(intr);
+		 	}
 		 }
 		 catch(Exception e) {
 			 
