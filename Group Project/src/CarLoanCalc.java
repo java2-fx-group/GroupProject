@@ -242,7 +242,7 @@ public class CarLoanCalc extends Application {
 	        	
 	        	
 	        	
-	        	Text interestRateLabel = new Text("Interest rate ($)");
+	        	Text interestRateLabel = new Text("Interest rate (%)");
 	        	interestRateLabel.setFont(Font.font("Tahoma", FontWeight.BOLD, 12));
 	        	leftColumn.add(interestRateLabel, 1, 16);
 	        	
