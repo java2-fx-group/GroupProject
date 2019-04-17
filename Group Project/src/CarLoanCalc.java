@@ -356,6 +356,24 @@ public class CarLoanCalc extends Application {
 		        totalPaymentAmount.setText(t);
 		        totalInterestAmount.setText("$0.00");
 			 }
+			 else if (i == 0) {
+				 float payment = (float) (principal/n);
+				 float totalPaid = principal;
+				 NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+				 String t= currencyFormat.format(totalPaid);   //total paid over loan life
+				 String s =currencyFormat.format(payment);
+				 double extra = (Math.round(totalPaid* 100.0) / 100.0)-((Math.round( payment* 100.0) / 100.0)*n);      //additional added to final payment
+				 String ext =currencyFormat.format(extra);
+				 if (extra != 0)
+					 if (extra > 0)
+						 monthlyPaymentAmount.setText(s+ " plus "+ext+ " on last pmnt.");
+					 else 
+						 monthlyPaymentAmount.setText(s+ " minus "+ext+ " on last pmnt.");
+				 else 
+					 monthlyPaymentAmount.setText(s);
+		        totalPaymentAmount.setText(t);
+		        totalInterestAmount.setText("$0.00");
+			 }
 			 else {
 				 float payment = (float) (principal*((i*(Math.pow(1+i, n))/((Math.pow(1+i, n)-1)))));
 				 float totalPaid = payment*n;
@@ -372,7 +390,7 @@ public class CarLoanCalc extends Application {
 				 //Double q = Double.parseDouble(t);
 				 //s = s.replace("$","").trim();
 				 //Double m = Double.parseDouble(s);
-				 double extra = (Math.round(totalPaid* 100.0) / 100.0)-(Math.round( payment* 100.0) / 100.0*n);      //additional added to final payment
+				 double extra = (Math.round(totalPaid* 100.0) / 100.0)-((Math.round( payment* 100.0) / 100.0)*n);      //additional added to final payment
 				 //extra = Math.round(extra * 100.0) / 100.0;
 				 String ext =currencyFormat.format(extra);
 				 if (extra != 0)
