@@ -363,7 +363,7 @@ public class CarLoanCalc extends Application {
 	        	monthlyPaymentAmount.setText("$" + m+ " plus $"+extra+ " on last payment.");
 	        else 
 	        	monthlyPaymentAmount.setText("$" + m);
-	        totalPaymentAmount.setText(t);
+	        totalPaymentAmount.setText("$"+t);
 	        totalInterestAmount.setText("$"+ totalInterest);
 	    }
 	}
