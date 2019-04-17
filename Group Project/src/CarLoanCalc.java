@@ -42,10 +42,10 @@ public class CarLoanCalc extends Application {
     private Text totalPaymentAmount = new Text("$0.00");
     private Text totalInterestAmount = new Text("$0.00");
     
-    private TextField carPriceField = new TextField();
-    private TextField tradeInField = new TextField();
-    private TextField interestRateField = new TextField();
-    private TextField monthsField = new TextField();
+    private TextField carPriceField = new TextField("0");
+    private TextField tradeInField = new TextField("0");
+    private TextField interestRateField = new TextField("0");
+    private TextField monthsField = new TextField("0");
     
     
 	    @Override
@@ -353,17 +353,21 @@ public class CarLoanCalc extends Application {
 	        NumberFormat interestFormat = NumberFormat.getPercentInstance();
 	        String t= currencyFormat.format(totalPaid);   //total paid over loan life
 	        String s =currencyFormat.format(payment);     //regular monthly payment
+	        String intr= currencyFormat.format(totalInterest);   //total paid over loan life
+	             //regular monthly payment
+	        
 	        t = t.replace("$","").trim();
 	        Double q = Double.parseDouble(t);
 	        s = s.replace("$","").trim();
 	        Double m = Double.parseDouble(s);
 	        double extra = q-(m*n);      //additional added to final payment
+	        String ext =currencyFormat.format(extra);
 	        double fpayment = m+extra;	//final monthly payment
 	        if (extra != 0)
-	        	monthlyPaymentAmount.setText("$" + m+ " plus $"+extra+ " on last payment.");
+	        	monthlyPaymentAmount.setText("$" + m+ " plus "+ext+ " on last pmnt.");
 	        else 
 	        	monthlyPaymentAmount.setText("$" + m);
 	        totalPaymentAmount.setText("$"+t);
-	        totalInterestAmount.setText("$"+ totalInterest);
+	        totalInterestAmount.setText(intr);
 	    }
 	}
